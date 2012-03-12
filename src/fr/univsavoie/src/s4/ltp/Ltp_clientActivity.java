@@ -11,6 +11,9 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import 	org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Ltp_clientActivity extends Activity {
     /* (non-Javadoc)
@@ -28,16 +31,27 @@ public class Ltp_clientActivity extends Activity {
         String response = null;
         try {
 			response = httpClient.execute(httpGet, responseHandler);
-		} catch (ClientProtocolException e) {
+
+			JSONObject potes = new JSONObject(response);
+			
+			String potesDesc = null;
+			JSONArray potesArray = potes.getJSONObject("gpx").getJSONArray("wpt");
+
+			
+	        TextView potesView = (TextView)this.findViewById(R.id.potes_text_view);
+	        potesView.setText(response);
+
+        } catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
         
-        TextView potesView = (TextView)this.findViewById(R.id.potes_text_view);
-        potesView.setText(response);
     }
 
 	/* (non-Javadoc)
