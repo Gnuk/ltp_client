@@ -3,5 +3,8 @@
 
     <string name="hello">Hello World, Ltp_clientActivity!</string>
     <string name="app_name">Ltp_client</string>
-
+    <string name="label_name">Nom :</string>
+    <string name="label_lat">latitude :</string>
+    <string name="label_lon">longitude :</string>
+    
 </resources>

@@ -11,6 +11,9 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import 	org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Ltp_clientActivity extends Activity {
     /* (non-Javadoc)
@@ -28,16 +31,34 @@ public class Ltp_clientActivity extends Activity {
         String response = null;
         try {
 			response = httpClient.execute(httpGet, responseHandler);
-		} catch (ClientProtocolException e) {
+
+			JSONObject potes = new JSONObject(response);			
+			JSONArray potesArray = potes.getJSONObject("gpx").getJSONArray("wpt");
+
+			String potesDesc = "";
+			
+	        
+	        for (int i = 0 ; (i < potesArray.length()) ; i++ ){
+	        	JSONObject pote = potesArray.getJSONObject(i);
+	        	String poteDesc = this.getString(R.string.label_name)+ pote.getString("name")
+	        			+"\n\t"+this.getString(R.string.label_lat)+pote.getDouble("@lat")
+	        			+"\n\t"+this.getString(R.string.label_lon)+pote.getDouble("@lon");
+	        	potesDesc = potesDesc + poteDesc + "\n";
+	        }
+	        TextView potesView = (TextView)this.findViewById(R.id.potes_text_view);
+	        potesView.setText(potesDesc);
+
+        } catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
         
-        TextView potesView = (TextView)this.findViewById(R.id.potes_text_view);
-        potesView.setText(response);
     }
 
 	/* (non-Javadoc)
