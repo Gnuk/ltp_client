@@ -1,6 +1,7 @@
 package fr.univsavoie.src.s4.ltp;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ public class Ltp_clientActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        DecimalFormat fmt = new DecimalFormat("#.000");
         
         DefaultHttpClient httpClient = new DefaultHttpClient();
         HttpGet httpGet = new  HttpGet("http://jibiki.univ-savoie.fr/teapot/api/localisations/carron/friendships?format=json");
@@ -41,8 +43,8 @@ public class Ltp_clientActivity extends Activity {
 	        for (int i = 0 ; (i < potesArray.length()) ; i++ ){
 	        	JSONObject pote = potesArray.getJSONObject(i);
 	        	String poteDesc = this.getString(R.string.label_name)+ pote.getString("name")
-	        			+"\n\t"+this.getString(R.string.label_lat)+pote.getDouble("@lat")
-	        			+"\n\t"+this.getString(R.string.label_lon)+pote.getDouble("@lon");
+	        			+"\n\t"+this.getString(R.string.label_lat)+fmt.format(pote.getDouble("@lat"))
+	        			+"\n\t"+this.getString(R.string.label_lon)+fmt.format(pote.getDouble("@lon"));
 	        	potesDesc = potesDesc + poteDesc + "\n";
 	        }
 	        TextView potesView = (TextView)this.findViewById(R.id.potes_text_view);
