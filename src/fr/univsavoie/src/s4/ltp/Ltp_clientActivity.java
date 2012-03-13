@@ -40,7 +40,9 @@ public class Ltp_clientActivity extends Activity {
 	        
 	        for (int i = 0 ; (i < potesArray.length()) ; i++ ){
 	        	JSONObject pote = potesArray.getJSONObject(i);
-	        	String poteDesc = "nom : "+ pote.getString("name")+"\n\tlat : "+pote.getDouble("@lat")+"\n\tlon : "+pote.getDouble("@lon");
+	        	String poteDesc = this.getString(R.string.label_name)+ pote.getString("name")
+	        			+"\n\t"+this.getString(R.string.label_lat)+pote.getDouble("@lat")
+	        			+"\n\t"+this.getString(R.string.label_lon)+pote.getDouble("@lon");
 	        	potesDesc = potesDesc + poteDesc + "\n";
 	        }
 	        TextView potesView = (TextView)this.findViewById(R.id.potes_text_view);
