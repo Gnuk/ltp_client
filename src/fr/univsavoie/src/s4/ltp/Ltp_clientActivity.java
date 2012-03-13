@@ -32,14 +32,19 @@ public class Ltp_clientActivity extends Activity {
         try {
 			response = httpClient.execute(httpGet, responseHandler);
 
-			JSONObject potes = new JSONObject(response);
-			
-			String potesDesc = null;
+			JSONObject potes = new JSONObject(response);			
 			JSONArray potesArray = potes.getJSONObject("gpx").getJSONArray("wpt");
 
+			String potesDesc = "";
 			
+	        
+	        for (int i = 0 ; (i < potesArray.length()) ; i++ ){
+	        	JSONObject pote = potesArray.getJSONObject(i);
+	        	String poteDesc = "nom : "+ pote.getString("name")+"\n\tlat : "+pote.getDouble("@lat")+"\n\tlon : "+pote.getDouble("@lon");
+	        	potesDesc = potesDesc + poteDesc + "\n";
+	        }
 	        TextView potesView = (TextView)this.findViewById(R.id.potes_text_view);
-	        potesView.setText(response);
+	        potesView.setText(potesDesc);
 
         } catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
