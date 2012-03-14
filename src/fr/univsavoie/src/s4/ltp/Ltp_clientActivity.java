@@ -5,6 +5,9 @@ import java.text.DecimalFormat;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.apache.http.client.ClientProtocolException;
@@ -39,16 +42,21 @@ public class Ltp_clientActivity extends Activity {
 
 			String potesDesc = "";
 			
-	        
+			LayoutInflater lf = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+	        LinearLayout potesView = (LinearLayout)this.findViewById(R.id.potes_view);
+
+			
 	        for (int i = 0 ; (i < potesArray.length()) ; i++ ){
+	        	View poteView = lf.inflate(R.layout.pote_view, null);	        	
+	        	TextView nameTF = (TextView)poteView.findViewById(R.id.pote_name);
+	        	TextView latTF = (TextView)poteView.findViewById(R.id.pote_lat);
+	        	TextView lonTF = (TextView)poteView.findViewById(R.id.pote_lon);
 	        	JSONObject pote = potesArray.getJSONObject(i);
-	        	String poteDesc = this.getString(R.string.label_name)+ pote.getString("name")
-	        			+"\n\t"+this.getString(R.string.label_lat)+fmt.format(pote.getDouble("@lat"))
-	        			+"\n\t"+this.getString(R.string.label_lon)+fmt.format(pote.getDouble("@lon"));
-	        	potesDesc = potesDesc + poteDesc + "\n";
+	        	nameTF.setText(pote.getString("name"));
+	        	latTF.setText(fmt.format(pote.getDouble("@lat")));
+	        	lonTF.setText(fmt.format(pote.getDouble("@lon")));
+	        	potesView.addView(poteView);
 	        }
-	        TextView potesView = (TextView)this.findViewById(R.id.potes_text_view);
-	        potesView.setText(potesDesc);
 
         } catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
