@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +20,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
+import com.google.android.maps.MapController;
+import com.google.android.maps.MapView;
+import com.google.android.maps.MyLocationOverlay;
 
 public class Ltp_clientActivity extends MapActivity {
+	private MapView mapView;
+	private MapController controller;
+	private MyLocationOverlay me;
     /* (non-Javadoc)
 	 * @see android.app.Activity#onPause()
 	 */
@@ -30,6 +38,13 @@ public class Ltp_clientActivity extends MapActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        mapView = (MapView)this.findViewById(R.id.map_view);
+        mapView.setBuiltInZoomControls(true);
+        controller = mapView.getController();
+        me = new MyLocationOverlay(this, mapView);
+        mapView.getOverlays().add(me);
+        
         DecimalFormat fmt = new DecimalFormat("#.000");
         
         DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -41,6 +56,10 @@ public class Ltp_clientActivity extends MapActivity {
 
 			JSONObject potes = new JSONObject(response);			
 			JSONArray potesArray = potes.getJSONObject("gpx").getJSONArray("wpt");
+			
+			Drawable marker = this.getResources().getDrawable(R.drawable.tea);
+			PotesItemizedOverlay potesOverlay = new PotesItemizedOverlay(marker, potesArray);
+			mapView.getOverlays().add(potesOverlay);
 
 			String potesDesc = "";
 			
@@ -87,10 +106,23 @@ public class Ltp_clientActivity extends MapActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		controller.setZoom(10);
+		controller.animateTo(new GeoPoint(45000000,5000000));
+        me.enableMyLocation();
+        me.runOnFirstFix(new Runnable() {
+			
+			@Override
+			public void run() {
+				controller.animateTo(me.getMyLocation());
+				//me.disableMyLocation();
+			}
+		});
+
 	}
 
 	@Override
 	protected void onPause() {
+        me.disableMyLocation();
 		super.onPause();
 	}
 
