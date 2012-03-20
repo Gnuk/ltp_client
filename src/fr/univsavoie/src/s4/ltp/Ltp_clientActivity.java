@@ -19,7 +19,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Ltp_clientActivity extends Activity {
+import com.google.android.maps.MapActivity;
+
+public class Ltp_clientActivity extends MapActivity {
     /* (non-Javadoc)
 	 * @see android.app.Activity#onPause()
 	 */
@@ -98,6 +100,11 @@ public class Ltp_clientActivity extends Activity {
 	@Override
 	protected void onStop() {
 		super.onStop();
+	}
+
+	@Override
+	protected boolean isRouteDisplayed() {
+		return false;
 	}
 
 }

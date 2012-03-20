@@ -4,10 +4,26 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <view android:id="@+id/map_view"
+    	class="com.google.android.maps.MapView"
+    	android:apiKey="0uo28_02iMM6nt3luxhdxGuH7WbnNuKL0x8ojVA"
+		android:layout_width="fill_parent"
+		android:layout_height="0px"
+        android:layout_weight="2.0"
+    	android:clickable="true"
+    	>
+    </view>
+    
+    <ScrollView 
+        android:layout_width="fill_parent"
+        android:layout_height="0px"
+        android:layout_weight="1.0"
+        >
     <LinearLayout
         android:id="@+id/potes_view"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical" >
     </LinearLayout>
+    </ScrollView>
 </LinearLayout>
