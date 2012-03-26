@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <EditTextPreference 
+        android:dialogMessage="LTP URL" 
+        android:dialogTitle="LTP URL" 
+        android:key="ltp_url" 
+        android:title="LTP URL" 
+        android:summary="URL du serveur ltp" 
+        android:defaultValue="http://jibiki.univ-savoie.fr/ltp"/>
+    
+    <EditTextPreference 
+        android:dialogMessage="Login" 
+        android:dialogTitle="Login" 
+        android:key="ltp_login" 
+        android:title="Login" 
+        android:summary="Login pour la connection" 
+        android:defaultValue="testuser1" />
+    
+    <EditTextPreference 
+        android:dialogMessage="Password" 
+        android:dialogTitle="Password" 
+        android:key="ltp_password" 
+        android:title="Password" 
+        android:summary="Password pour la connection" 
+        android:defaultValue="test" 
+        android:inputType="textPassword"
+        /> 
+</PreferenceScreen>
