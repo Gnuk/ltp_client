@@ -77,6 +77,7 @@ public class Ltp_clientActivity extends MapActivity {
 	        	latTF.setText(fmt.format(pote.getDouble("@lat")));
 	        	lonTF.setText(fmt.format(pote.getDouble("@lon")));
 	        	potesView.addView(poteView);
+	        	poteView.setOnClickListener(new PoteClickListener(mapView, pote));
 	        }
 
         } catch (ClientProtocolException e) {

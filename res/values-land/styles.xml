@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="main_view" parent="@style/main_view_common">
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="map_view">
+        <item name="android:layout_weight">2.0</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_width">0dp</item>
+    </style>
+    <style name="pote_view">
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_width">0dp</item>
+    </style>
+</resources>
