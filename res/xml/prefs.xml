@@ -24,5 +24,10 @@
         android:summary="Password pour la connection" 
         android:defaultValue="test" 
         android:inputType="textPassword"
-        /> 
+        />
+    <CheckBoxPreference android:summaryOff="service arrêté" 
+        android:summaryOn="Service lancé" 
+        android:title="Service de notification" 
+        android:key="ltp_service" 
+        android:summary="start/stop service de localisation "/> 
 </PreferenceScreen>
