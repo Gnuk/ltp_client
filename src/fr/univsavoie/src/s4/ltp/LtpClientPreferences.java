@@ -30,7 +30,6 @@ public class LtpClientPreferences extends PreferenceActivity implements SharedPr
 		super.onDestroy();
 	}
 
-	@Override
 	public void onSharedPreferenceChanged(SharedPreferences pref, String clef) {
 		if ("ltp_service".equals(clef)){
 			Intent service = new Intent(this, LtpTrackerService.class);

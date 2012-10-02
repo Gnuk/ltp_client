@@ -69,7 +69,6 @@ public class Ltp_clientActivity extends MapActivity {
         String url = preferences.getString("ltp_url", "http://jibiki.univ-savoie.fr/ltp");
         
          HttpRequestInterceptor preemptiveAuth = new HttpRequestInterceptor() {
-            @Override
             public void process( final HttpRequest request, final HttpContext context) throws HttpException, IOException {
                 AuthState authState = (AuthState) context.getAttribute(ClientContext.TARGET_AUTH_STATE);
                 CredentialsProvider credsProvider = (CredentialsProvider) context.getAttribute(
@@ -161,7 +160,6 @@ public class Ltp_clientActivity extends MapActivity {
         me.enableMyLocation();
         me.runOnFirstFix(new Runnable() {
 			
-			@Override
 			public void run() {
 				controller.animateTo(me.getMyLocation());
 				//me.disableMyLocation();

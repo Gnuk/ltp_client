@@ -19,7 +19,6 @@ public class PoteClickListener implements OnClickListener {
 		pote = p;
 	}
 
-	@Override
 	public void onClick(View arg0) {
 		try {
 			GeoPoint p = new GeoPoint((int)(pote.getDouble("@lat")*1e6), (int)(pote.getDouble("@lon")*1e6));

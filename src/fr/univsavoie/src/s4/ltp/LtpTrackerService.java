@@ -59,7 +59,6 @@ public class LtpTrackerService extends Service implements LocationListener {
         url = preferences.getString("ltp_url", "http://jibiki.univ-savoie.fr/ltp");
         
         HttpRequestInterceptor preemptiveAuth = new HttpRequestInterceptor() {
-            @Override
             public void process( final HttpRequest request, final HttpContext context) throws HttpException, IOException {
                 AuthState authState = (AuthState) context.getAttribute(ClientContext.TARGET_AUTH_STATE);
                 CredentialsProvider credsProvider = (CredentialsProvider) context.getAttribute(
@@ -121,7 +120,6 @@ public class LtpTrackerService extends Service implements LocationListener {
 		return null;
 	}
 
-	@Override
 	public void onLocationChanged(Location location) {
 		Log.e("ltp", "location changed");
 		double lat = location.getLatitude();
@@ -149,19 +147,16 @@ public class LtpTrackerService extends Service implements LocationListener {
 		}
 	}
 
-	@Override
 	public void onProviderDisabled(String provider) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void onProviderEnabled(String provider) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 		// TODO Auto-generated method stub
 		
