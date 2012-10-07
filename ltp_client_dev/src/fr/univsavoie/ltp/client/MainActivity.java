@@ -26,6 +26,10 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
+/**
+ * MainActivity is the main apps class
+ *
+ */
 public class MainActivity extends Activity 
 {
 	/* Global variables */
